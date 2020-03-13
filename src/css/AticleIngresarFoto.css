@@ -1,0 +1,56 @@
+.articleIngresar{
+    width: 80%;
+    height: 1300px;
+    background: white;
+    float: left;
+}
+.divTitulo{
+    width: 100%;
+    height: 50px;
+    float: left;}
+h2{
+    margin-top: 1em;
+    text-align: center;
+}
+.divContenedor{
+    width: 100%;
+    height: 500px;  
+    margin-top: 1em;
+    float: left;
+}
+.divContenedorBotones{
+    width: 50%;
+    height: 400px;
+    margin-left: 25%;
+    margin-top: 3em;
+    border-radius: 5px;
+    border: 1px solid black;
+    box-shadow: 7px 7px 3px black;
+    float: left;
+}
+.divContenedorBotones h3{
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.btexto{
+    width: 70%;
+    margin-left: 15%;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 1em;
+}
+input[type="file"]{
+    margin-left: 15%;
+    margin-top: 1em;
+}
+.botonEnviar{
+    width: 70%;
+    margin-left: 15%;
+    height: 40px;
+    border-radius: 5px;
+    background: #579EEB;
+    color: white;
+    margin-top: 1em;
+    cursor: pointer;
+}

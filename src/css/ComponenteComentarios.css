@@ -1,0 +1,66 @@
+.divCajaFoto{
+    width: 96%;
+    height: 900px;
+    margin-left: 2%;
+    /* background: red; */
+    background: white;
+    float: left;
+}
+.bAtras{
+    width: 70%;
+    height: 50px;
+    background: #579EEB;
+    border-radius: 5px;
+    box-shadow: 7px 7px 3px black;
+    color: white;
+    font-size: 20px;
+    margin-left: 15%;
+    margin-top: 1em;
+}
+.divContenedorFoto{
+    width: 70%;
+    height: 400px;
+    margin-left: 15%;
+    margin-top: 1em;
+    /* background: yellow; */
+    background: white;
+    float: left;
+}
+.divContenedorFoto img{
+    width: 100%;
+    height: 400px;
+}
+.Comentarios{
+    width: 70%;
+    height: 550px;
+    margin-left: 15%;
+    margin-top: 1em;
+    overflow-y: scroll;
+    /* background:blue; */
+    background: white;
+    float: left;
+}
+.divCajaFormulario{
+    width: 70%;
+    height: 150px;
+    margin-left: 15%;
+    background: white;
+    float: left;
+}
+.btextoDos{
+    width: 70%;
+    margin-left: 15%;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 1em;
+}
+.botonEnviarDos{
+    width: 70%;
+    margin-left: 15%;
+    height: 40px;
+    border-radius: 5px;
+    background: #579EEB;
+    color: white;
+    margin-top: 1em;
+    cursor: pointer;
+}

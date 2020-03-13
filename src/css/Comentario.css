@@ -1,0 +1,16 @@
+.divCajita{
+    width: 98%;
+    min-height: 100px;
+    margin-top: 5px;
+    margin-left: 1%;
+    border-radius: 5px;
+    background: #ECECEC;
+    float: left;
+}
+.divCajitaParrafoUno{
+    color: #245281;
+    margin: 10px;
+}
+.divCajitaComentario{
+    margin: 10px;
+}
