@@ -3,17 +3,21 @@ import React from 'react'
 import ArticleInicio from './ArticleInicio'
 import Aside from './Aside'
 import AticleIngresarFoto from './AticleIngresarFoto'
+// import ArticlePerfiles from './ArticlePerfiles'
+import ArticleLoguear from './ArticleLoguear'
 //CSS
 import '../css/Section.css'
 
 
 class Section extends React.Component{
 
+    _isMounter = false;
+
     constructor(props){
         super(props)
         this.state = 
         {
-            dato:'INICIO'
+            dato:'LOGIN'
         }
     }
 
@@ -23,18 +27,20 @@ class Section extends React.Component{
             this.setState({dato:'INICIO'})
         }else if(event.target.id == 'bSubirFoto'){
             this.setState({dato:'SUBIR FOTO'})
-        }else if(event.target.id == 'bPerfiles'){
-            this.setState({dato:'PERFIES'})
+        }else if(event.target.id == 'bLogin'){
+            this.setState({dato:'LOGIN'})
         }
         // console.log(this.state.dato)
     }
 
     componentDidMount(){
         console.log('Montado')
+        this._isMounter = true;
     }
 
     componentWillUnmount(){
         console.log('Desmontado')
+        this._isMounter = false;
     }
     
     render(){
@@ -43,7 +49,7 @@ class Section extends React.Component{
                 <nav>
                     <input style={{marginLeft:'25%'}} id='bInicio' type='button' onClick={this.handleClick} value='INICIO'></input>
                     <input id='bSubirFoto' type='button' onClick={this.handleClick} value='SUBIR FOTOS'></input>
-                    <input id='bPerfiles' type='button' onClick={this.handleClick} value='PERFILES'></input>
+                    <input id='bLogin' type='button' onClick={this.handleClick} value='LOGIN'></input>
                 </nav>
                 {this.state.dato == 'INICIO'
                 ?
@@ -53,9 +59,9 @@ class Section extends React.Component{
                 ?
                 <AticleIngresarFoto titulo={this.state.dato}></AticleIngresarFoto>
                 :
-                this.state.dato == 'PERFIES'
+                this.state.dato == 'LOGIN'
                 ?
-                <div></div>
+                <ArticleLoguear titulo={this.state.dato}></ArticleLoguear>
                 :
                 <div></div>
                 }

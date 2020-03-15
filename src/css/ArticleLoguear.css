@@ -1,0 +1,60 @@
+.divArticleLoguear{
+    width: 75%;
+    height: 800px;
+    /* background: white; */
+    float: left;
+}
+.divTitulos{
+    width: 98%;
+    margin-left: 1%;
+    height: 50px;
+    background: white;
+    float: left;
+}
+.divTitulos h2{
+    text-align: center;
+    margin: 0.5em;
+}
+.divContenedorLoguin{
+    width: 100%;
+    height: 735px;
+    /* background-image: url('../imagenes/fondoDos.jpg'); */
+    margin-top: 1em;
+    float: left;
+}
+.divContenedorLoguear{
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 4em;
+    border-radius: 10px;
+    box-shadow: 7px 7px 3px black;
+    height: 600px;
+    background: white;
+    float: left;
+}
+.divLoginRegistro{
+    width: 100%;
+    height: 50px;
+    float: left;
+}
+.divLoginRegistro h3{
+    text-align: center;
+    margin-top: 0.5em;
+}
+.divLogin{
+    width: 45%;
+    height: 550px;
+    margin-left: 5%;
+    float: left;
+}
+.divVacio{
+    width: 1%;
+    height: 500px;
+    background: #B4B4B4;
+    float: left;
+}
+.Registro{
+    width: 45%;
+    height: 550px;
+    float: left;
+}

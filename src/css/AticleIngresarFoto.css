@@ -1,20 +1,23 @@
 .articleIngresar{
-    width: 80%;
-    height: 1300px;
-    background: white;
+    width: 75%;
+    height: 800px;
     float: left;
 }
 .divTitulo{
-    width: 100%;
+    width: 98%;
+    margin-left: 1%;
     height: 50px;
-    float: left;}
-h2{
-    margin-top: 1em;
-    text-align: center;
+    background: white;
+    float: left;
+}
+.divTitulo h2{
+   text-align: center;
+   margin: 0.5em;
 }
 .divContenedor{
     width: 100%;
-    height: 500px;  
+    height: 735px;  
+    /* background-image: url('../imagenes/fondoDos.jpg'); */
     margin-top: 1em;
     float: left;
 }
@@ -24,6 +27,7 @@ h2{
     margin-left: 25%;
     margin-top: 3em;
     border-radius: 5px;
+    background: white;
     border: 1px solid black;
     box-shadow: 7px 7px 3px black;
     float: left;
@@ -53,4 +57,8 @@ input[type="file"]{
     color: white;
     margin-top: 1em;
     cursor: pointer;
+    transition: all 300ms;
+}
+.botonEnviar:hover{
+    background: #ADD1EE;
 }

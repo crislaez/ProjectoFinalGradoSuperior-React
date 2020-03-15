@@ -7,8 +7,7 @@ import Comentario from './Comentario.js'
 class ComponenteComentarios extends React.Component{
 
     _isMounted = false;
-    auxDos = '';
-    
+ 
     constructor(props){
         super(props);
         this.state = 
@@ -31,11 +30,8 @@ class ComponenteComentarios extends React.Component{
            if(snap.val()){
             this.setState({arrayPrincipar:snap.val()});
             this.setState({indiceDos:this.state.arrayPrincipar.length});
-           }
-           
-           
-       })
-       
+           }          
+       })       
     }
 
     componentWillMount(){
@@ -44,8 +40,8 @@ class ComponenteComentarios extends React.Component{
 
     handleClickComentarios = () => {
         console.log(this.state.arrayPrincipar)
-        if(!this.state.usuario){
-            alert('Rellene el usuario')
+        if(!this.state.usuario || !/^[A-Za-z]+$/.test(this.state.usuario)){
+            alert('Rellene el usuario correctamente')
         }else if(!this.state.comentario){
             alert('Rellene el comentario')
         }else{
@@ -84,9 +80,11 @@ class ComponenteComentarios extends React.Component{
     render(){
         return(
             <div className='divCajaFoto'>
+
                 <div className='divContenedorFoto'>
                     <img src={this.props.foto}></img>
                 </div>
+                
                 <div className='Comentarios'>
                 {
                     this._isMounted && this.state.arrayPrincipar

@@ -1,5 +1,4 @@
 import React from 'react'
-
 //CSS
 import '../css/Comentario.css'
 

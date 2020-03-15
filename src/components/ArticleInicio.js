@@ -3,6 +3,7 @@ import firebase from 'firebase'
 //CSS
 import '../css/ArticleInicio.css'
 import '../css/ComponenteComentarios.css'
+import '../css/loader.css'
 //COMPONENTE 
 import ComponenteComentarios from './ComponenteComentarios.js'
 
@@ -24,21 +25,20 @@ class ArticleInicio extends React.Component{
 
     componentDidMount(){
         this._isMounted = true;
-        console.log(this._isMounted)    
-        if(this._isMounted){
+        //para que no de fallos de actualizacion, es mejor poner el condicional
+        //is mounted dentro del resultado de la database
+        //para que no se acualice el array estado cuando se suba a foto      
             const db = firebase.database().ref()
             db.on('value',(snap) => {
-                
-                this.setState({array:snap.val()})
-                // this.setState((snap) => ({array:snap.val()}))
-                localStorage.setItem('indice',snap.val().length)
-            }) 
-        }         
+                if(this._isMounted){ 
+                    this.setState({array:snap.val()})
+                    localStorage.setItem('indice',snap.val().length)
+                } 
+            })                
     }
-
+    
     componentWillUnmount(){
         this._isMounted = false; 
-        console.log(this._isMounted)                  
     }
 
     handleClick = (event) => {
@@ -67,7 +67,10 @@ class ArticleInicio extends React.Component{
     render(){
         return(
             <article className='articleInicio'>
-                <h2>{this.props.titulo}</h2>
+                <div className='divTitulo'>
+                    <h2>{this.props.titulo}</h2>
+                </div>
+                
                 <div className='divContenedor2'>    
                     {
                         this._isMounted && !this.state.load
@@ -93,7 +96,8 @@ class ArticleInicio extends React.Component{
                             <ComponenteComentarios foto={this.state.arrayDos.foto} indice={this.state.indice}></ComponenteComentarios>
                         </div> 
                         :
-                        <div>Cargando...</div>                        
+                        // <div className="loader">Loading...</div> 
+                        <div>Cargando...</div>                      
                     }
                 </div>
             </article>

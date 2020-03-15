@@ -34,8 +34,8 @@ class AticleIngresarFoto extends React.Component{
 
     handleClick = () => {
         console.log(this.state.indice)
-        if(!this.state.usuario){
-            alert('Rellene el usuario');
+        if(!this.state.usuario|| !/^[A-Za-z]+$/.test(this.state.usuario)){
+            alert('Rellene el usuario correctamente');
         }else if(!this.state.mensaje){
             alert('Rellene el mensaje');
         }else if(!this.state.foto){
