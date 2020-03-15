@@ -23,8 +23,8 @@
     float: left;
 }
 .divContenedorLoguear{
-    width: 90%;
-    margin-left: 5%;
+    width: 80%;
+    margin-left: 10%;
     margin-top: 4em;
     border-radius: 10px;
     box-shadow: 7px 7px 3px black;
@@ -34,27 +34,26 @@
 }
 .divLoginRegistro{
     width: 100%;
-    height: 50px;
+    height: 100px;
+    background: white;
     float: left;
 }
 .divLoginRegistro h3{
     text-align: center;
     margin-top: 0.5em;
 }
-.divLogin{
-    width: 45%;
-    height: 550px;
-    margin-left: 5%;
-    float: left;
+.divLoginRegistro input[type='button']{
+    width: 20%;
+    height: 30px;
+    color: white;
+    cursor: pointer;
+    transition: all 300ms;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px black;
+    background: #579EEB;
+    margin-left: 20%;
+    margin-top: 0.5em;
 }
-.divVacio{
-    width: 1%;
-    height: 500px;
-    background: #B4B4B4;
-    float: left;
-}
-.Registro{
-    width: 45%;
-    height: 550px;
-    float: left;
+.divLoginRegistro input[type='button']:hover{
+    background: #ADD1EE;
 }

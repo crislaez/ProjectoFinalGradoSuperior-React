@@ -36,6 +36,15 @@ class Section extends React.Component{
     componentDidMount(){
         console.log('Montado')
         this._isMounter = true;
+        setInterval(() => {
+            let usuarioLocal = localStorage.getItem('usuario')
+            if(usuarioLocal){
+                this.setState({dato:'INICIO'})
+                // console.log(this.state.dato)
+            }else{
+                // console.log('no esta logeado')
+            }
+        },1000)
     }
 
     componentWillUnmount(){
