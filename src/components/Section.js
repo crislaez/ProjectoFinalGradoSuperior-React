@@ -34,22 +34,28 @@ class Section extends React.Component{
     }
 
     componentDidMount(){
-        console.log('Montado')
         this._isMounter = true;
-        setInterval(() => {
-            let usuarioLocal = localStorage.getItem('usuario')
-            if(usuarioLocal){
-                this.setState({dato:'INICIO'})
-                // console.log(this.state.dato)
-            }else{
-                // console.log('no esta logeado')
-            }
-        },1000)
+
+        console.log(localStorage.getItem('usuario'))
+    //    const intervalo = setInterval(() => {
+    //         let usuarioLocal = localStorage.getItem('usuario')
+    //         if(usuarioLocal){
+    //             this.setState({dato:'INICIO'})
+    //             // console.log(this.state.dato)
+    //             clearInterval(intervalo);
+    //         }else{
+    //             // console.log('no esta logeado')
+    //         }
+    //     },1000)
     }
 
     componentWillUnmount(){
-        console.log('Desmontado')
         this._isMounter = false;
+    }
+
+    redireccionInicio = () => {
+        this.setState({dato:'INICIO'})
+        console.log('Hola')
     }
     
     render(){
@@ -70,7 +76,7 @@ class Section extends React.Component{
                 :
                 this.state.dato == 'LOGIN'
                 ?
-                <ArticleLoguear titulo={this.state.dato}></ArticleLoguear>
+                <ArticleLoguear titulo={this.state.dato} eventoEstado = {this.redireccionInicio}></ArticleLoguear>
                 :
                 <div></div>
                 }

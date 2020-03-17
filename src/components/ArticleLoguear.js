@@ -14,7 +14,8 @@ class ArticleLoguear extends React.Component{
 
         this.state = 
             {
-                load:false
+                load:false,
+                estadoBoton:true
 
             }
     }
@@ -22,18 +23,32 @@ class ArticleLoguear extends React.Component{
     handleClick = (event) => {
         if(event.target.id == 'bLogin'){
             this.setState({load:true})
-        }else{
+        }
+        else if(event.target.id == 'bRegistro'){
             this.setState({load:false})
+        }
+        else if(event.target.id == 'bCerrarSesion'){
+            alert('Has cerrado sesion')
+            localStorage.removeItem('primarykey');
+            localStorage.removeItem('usuario');
+            this.setState({estadoBoton:true})
         }
     }
 
     componentDidMount(){
         this._isMounted = true;
-        console.log(this._isMounted)
+        console.log(localStorage.getItem('primarykey'))
+        if(localStorage.getItem('primarykey')){
+            this.setState({estadoBoton:false})
+        }       
     }
 
     componentWillUnmount(){
         this._isMounted = false;
+    }
+
+    cambioEstadoLogin = () => {
+        this.setState({estadoBoton:false})
     }
 
     render(){
@@ -47,13 +62,20 @@ class ArticleLoguear extends React.Component{
                     <div className='divContenedorLoguear'>
                         <div className='divLoginRegistro'>
                             <h3>Login | Registro</h3>
-                            <input id='bLogin' type='button' value='Login' onClick={this.handleClick}></input>
+                            {
+                                this.state.estadoBoton
+                                ?
+                                <input id='bLogin' type='button' value='Login' onClick={this.handleClick}></input>
+                                :
+                                <input id='bCerrarSesion' type='button' value='Cerrar Sesion' onClick={this.handleClick}></input>
+                            }
+                            
                             <input id='bRegistro' type='button' value='Registro' onClick={this.handleClick}></input>
                         </div>
                         {
                             this._isMounted && this.state.load
                             ?
-                            <Login titulo='Login'></Login>
+                            <Login titulo='Login' cambioEstado = {this.props.eventoEstado} cambioEstadoLogear={this.cambioEstadoLogin}></Login>
                             :
                             this._isMounted || !this.state.load
                             ?

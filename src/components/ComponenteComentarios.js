@@ -13,25 +13,29 @@ class ComponenteComentarios extends React.Component{
         this.state = 
         {
             indice:'',
+            indice2:'',
             usuario:'',
             comentario:'',
-            arrayPrincipar:[],
-            indiceDos:''
+            arrayPrincipar:[]
+            
         }
     }
     
     componentDidMount(){
        this._isMounted = true;
-       this.setState({indice:this.props.indice})
+       this.setState({indice:this.props.indice1,indice2:this.props.indice2, usuario:localStorage.getItem('usuario')})
 
-       console.log(this.props.indice)
-       let datamensaje = firebase.database().ref(`${this.props.indice}`).child('comentarios');
+       let datamensaje = firebase.database().ref(`${this.props.indice1}`).child(`datos/${this.props.indice2}/comentarios`);
        datamensaje.on('value',(snap) => {
-           if(snap.val()){
-            this.setState({arrayPrincipar:snap.val()});
-            this.setState({indiceDos:this.state.arrayPrincipar.length});
-           }          
+    
+        if(this._isMounted){
+            if(snap.val()){
+                console.log(snap.val())
+             this.setState({arrayPrincipar:snap.val()});           
+            } 
+        }                    
        })       
+       
     }
 
     componentWillMount(){
@@ -40,12 +44,12 @@ class ComponenteComentarios extends React.Component{
 
     handleClickComentarios = () => {
         console.log(this.state.arrayPrincipar)
-        if(!this.state.usuario || !/^[A-Za-z]+$/.test(this.state.usuario)){
-            alert('Rellene el usuario correctamente')
+        if(!this.state.usuario){
+            alert('Tienes que estar logueado')
         }else if(!this.state.comentario){
             alert('Rellene el comentario')
         }else{
-                     
+            
             let aux = this.state.indice;     
                
             let longitud;
@@ -57,7 +61,7 @@ class ComponenteComentarios extends React.Component{
                 longitud = 0;
             }
             //creamos una varaible donde esta el indice y la foto donde ingresaremos los comentarios
-            let datamensaje = firebase.database().ref(`${aux}`).child(`/comentarios/${longitud}`);
+            let datamensaje = firebase.database().ref(`${aux}`).child(`datos/${this.props.indice2}/comentarios/${longitud}`);
             //creamos elobjeto donde van los datos
             const datos = 
                 {
@@ -72,7 +76,7 @@ class ComponenteComentarios extends React.Component{
             .catch(error => {
                 console.log(error.message)
             })           
-            this.setState({usuario:''})
+            
             this.setState({comentario:''})            
         }        
     }
@@ -82,7 +86,7 @@ class ComponenteComentarios extends React.Component{
             <div className='divCajaFoto'>
 
                 <div className='divContenedorFoto'>
-                    <img src={this.props.foto}></img>
+                    <img src={this.props.imagen}></img>
                 </div>
                 
                 <div className='Comentarios'>
@@ -100,8 +104,6 @@ class ComponenteComentarios extends React.Component{
                 }
                 </div>
                 <div className='divCajaFormulario'>
-                    <input className='btextoDos' type='text' value={this.state.usuario} onChange={(param) => {this.setState({usuario:param.target.value})}}  placeholder='usuario...'></input>
-                    <br></br>
                     <input className='btextoDos' type='text' value={this.state.comentario} onChange={(param) => {this.setState({comentario:param.target.value})}}  placeholder='comentario...'></input>
                     <br></br>
                     <input className='botonEnviarDos' type='button' value='Enviar' onClick={this.handleClickComentarios}></input>

@@ -22,13 +22,17 @@ class Login extends React.Component{
 
         firebase.database().ref().on('value',(snap) => {
             // console.log(snap.val())
-            this.setState({array:snap.val()});
+            if(this._isMounted){
+                this.setState({array:snap.val()});
+            }            
         })
     }
 
     componentWillUnmount(){
         this._isMounted = false;
     }
+
+    
 
     handleLogin = (event) => {
         event.preventDefault();
@@ -38,15 +42,24 @@ class Login extends React.Component{
         }else if(!this.state.clave){
             alert('Rellene la clave correctamente');
         }else{
-            let comprobar = false;
+            var comprobar = false;
             // console.log(this.state.array)
             for(let valor in this.state.array){
                 if(this.state.array[valor].usuario == this.state.nombre && this.state.array[valor].clave == this.state.clave){
-                    console.log(this.state.array[valor])    
-                    comprobar = true;         
-                    localStorage.setItem('usuario',this.state.nombre)    
-                }else{
-                    comprobar = false
+                    // console.log(this.state.array[valor])    
+                    comprobar = true;    
+
+                    //ingresamos en el localstorage el nombre del usuario y el indice para saber donde subir las fotos    
+                    localStorage.setItem('usuario',this.state.nombre)  
+                    localStorage.setItem('primarykey',valor)   
+                    console.log(comprobar)           
+                    
+                    //aqui activamos la funcion de section para que su estado sea INICIo y se carge ese componente
+                    const funcionPadreSection  = this.props.cambioEstado;
+                    funcionPadreSection();
+                    //esta funcion es la de ArticleLoguear para cambiar el estado y se renderice el componente boton cerrar sesion
+                    const functionPadreLogear = this.props.cambioEstadoLogear
+                    functionPadreLogear();
                 }
             }
 
@@ -57,8 +70,11 @@ class Login extends React.Component{
             }
             
             this.setState({nombre:'',clave:''})
-        }        
+        }      
+        
+        
     }
+    
     render(){
         return(
             <div className='divContenedorLogin'>

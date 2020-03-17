@@ -69,10 +69,10 @@ class Registro extends React.Component{
                     correo:this.state.correo,
                     clave:this.state.clave
                 }
-            firebase.database().ref(`${this.state.indice}`).set(usuario)
+            firebase.database().ref(`${this.state.indice}`).set(usuario);
             alert('Datos ingresados correctamente');
             //vaciamos los inputs y los estados
-            this.setState({nombre:'',apellido:'',sexo:'',clave:'',claveDos:''});
+            this.setState({nombre:'',apellido:'',sexo:'',correo:'',clave:'',claveDos:''});
         }               
     }
 

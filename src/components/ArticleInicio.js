@@ -19,7 +19,9 @@ class ArticleInicio extends React.Component{
                 botonAtras:false,
                 array:[],
                 arrayDos:[],
-                indice:''                
+                indice1:'',
+                indice2:'',
+                foto:''              
             }
     }
 
@@ -27,12 +29,10 @@ class ArticleInicio extends React.Component{
         this._isMounted = true;
         //para que no de fallos de actualizacion, es mejor poner el condicional
         //is mounted dentro del resultado de la database
-        //para que no se acualice el array estado cuando se suba a foto      
-            const db = firebase.database().ref()
-            db.on('value',(snap) => {
+        //para que no se acualice el array estado cuando se suba a foto       
+            firebase.database().ref().on('value',(snap) => {
                 if(this._isMounted){ 
                     this.setState({array:snap.val()})
-                    localStorage.setItem('indice',snap.val().length)
                 } 
             })                
     }
@@ -42,29 +42,43 @@ class ArticleInicio extends React.Component{
     }
 
     handleClick = (event) => {
-        // console.log(event.target)
-        console.log(event.target.dataset.codigo);
-        let aux = event.target.dataset.codigo
-        this.setState({load:true});
-
-        console.log(`el valor del estado es ${this.state.load}`)
-             
-        const database = firebase.database().ref(`${aux}`)
-        database.on('value',(snap) => {
-            // console.log(snap.val())
-            // console.log(snap.key)
-            this.setState({arrayDos:snap.val()});   
-            this.setState({indice:snap.key}) ;
-        })
-        
+     
+        let p1 = event.target.dataset.posicion1
+        let p2 = event.target.dataset.posicion2
+        let cfoto = event.target.dataset.foto
+        let cmensaje = event.target.dataset.mensaje
+        let cusuario = event.target.dataset.usuario;
+        // console.log('posicion 1 '+p1)
+        // console.log('posicion 2 '+p2)
+        // console.log(cfoto)
+        // console.log(cmensaje)
+        // console.log(cusuario)
+        this.setState({foto:cfoto, load:true, indice1:p1, indice2:p2})        
     }
 
     handleClickAtras = () => {
-        this.setState({load:false})
-       
+        this.setState({load:false})       
     }
 
     render(){
+        const arrayDatos = [];
+        this.state.array.map((dato,key) => {
+            if(dato.datos){
+                dato.datos.map((d,k) => {
+                    let aux = 
+                        {
+                         posicion1:key,
+                         posicion2:k,
+                         usuario:dato.usuario,
+                         foto:d.foto,
+                         mensaje:d.mensaje
+                            
+                        }
+                    arrayDatos.push(aux)
+                })
+            }           
+        })
+
         return(
             <article className='articleInicio'>
                 <div className='divTitulo'>
@@ -74,26 +88,26 @@ class ArticleInicio extends React.Component{
                 <div className='divContenedor2'>    
                     {
                         this._isMounted && !this.state.load
-                        ?
-                        this.state.array.map((dato, key) => {
-                            return(
-                                <div data-codigo={key} key={key} className='divFotosUsuarios' onClick={this.handleClick}>
-                                    <div className='divImangenes'>
-                                        <img data-codigo={key} src={dato.foto}></img>
+                        ?                  
+                            arrayDatos.map((dato, key) => {
+                                return(
+                                    <div data-codigo={key} data-foto={dato.foto} data-mensaje={dato.mensaje} data-usuario={dato.usuario} data-posicion1={dato.posicion1} data-posicion2={dato.posicion2} key={key} className='divFotosUsuarios' onClick={this.handleClick}>
+                                        <div className='divImangenes'>
+                                            <img data-codigo={key} data-foto={dato.foto} data-mensaje={dato.mensaje} data-usuario={dato.usuario} data-posicion1={dato.posicion1} data-posicion2={dato.posicion2} src={dato.foto}></img>
+                                        </div>
+                                        <div data-codigo={key} data-foto={dato.foto} data-mensaje={dato.mensaje} data-usuario={dato.usuario} data-posicion1={dato.posicion1} data-posicion2={dato.posicion2} className='divParrafo'>
+                                            <p data-codigo={key} data-foto={dato.foto} data-mensaje={dato.mensaje} data-usuario={dato.usuario} data-posicion1={dato.posicion1} data-posicion2={dato.posicion2}  className='parrafos'>{dato.usuario}</p>
+                                            <p data-codigo={key} data-foto={dato.foto} data-mensaje={dato.mensaje} data-usuario={dato.usuario} data-posicion1={dato.posicion1} data-posicion2={dato.posicion2} >{dato.mensaje}</p> 
+                                        </div>                                  
                                     </div>
-                                    <div data-codigo={key} className='divParrafo'>
-                                        <p data-codigo={key}  className='parrafos'>{dato.usuario}</p>
-                                        <p data-codigo={key} >{dato.mensaje}</p> 
-                                    </div>                                  
-                                </div>
-                            )
-                        })
+                                )
+                            })                          
                         :
                         this._isMounted && this.state.load
                         ?
                         <div>
                             <input className='bAtras' type='button' value='ATRAS' onClick={this.handleClickAtras}></input>                                              
-                            <ComponenteComentarios foto={this.state.arrayDos.foto} indice={this.state.indice}></ComponenteComentarios>
+                            <ComponenteComentarios imagen={this.state.foto} indice1={this.state.indice1} indice2={this.state.indice2}></ComponenteComentarios>
                         </div> 
                         :
                         // <div className="loader">Loading...</div> 

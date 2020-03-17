@@ -4,7 +4,7 @@ import App from './components/App';
 import firebase from 'firebase';
 
 firebase.initializeApp({
-  
+
 })
 // import * as serviceWorker from './serviceWorker';
 let root = document.querySelector('#root')

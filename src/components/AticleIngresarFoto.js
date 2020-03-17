@@ -5,42 +5,60 @@ import '../css/AticleIngresarFoto.css'
 
 class AticleIngresarFoto extends React.Component{
 
-    __isMounted = false;
+    _isMounted = false;
 
     constructor(props){
         super(props)
         this.state = 
         {
-            usuario:'',
             mensaje:'',
             foto:'',
             ruta:'',
             indice:'',
-            array:[]
+            array:[],
+            indiceFoto:'',
+            usuaro:''
         }
     }
 
     componentDidMount(){
-        this.__isMounted = true;
-        console.log(this._isMounted)    
-        var dato = localStorage.getItem('indice')
-        this.setState({indice:dato})
+        this._isMounted = true;
+      
+        this.setState({usuaro:localStorage.getItem('usuario'),indice:localStorage.getItem('primarykey')})
+        
     }
 
     componentWillUnmount(){
-        this.__isMounted = false;
+        this._isMounted = false;
         console.log(this._isMounted)    
     }
 
     handleClick = () => {
         console.log(this.state.indice)
-        if(!this.state.usuario|| !/^[A-Za-z]+$/.test(this.state.usuario)){
-            alert('Rellene el usuario correctamente');
+
+        if(!this.state.usuaro){
+            alert('Tienes estar logueado')
         }else if(!this.state.mensaje){
             alert('Rellene el mensaje');
-        }else if(!this.state.foto){
+        }
+        else if(!this.state.foto){
             alert('Escoja la foto');
-        }else{
+        }
+        else{
+            //aqui cogemos el indice del array que devuelve para saber en qeu indice
+            //ingresar al nueva foto
+            firebase.database().ref(`${this.state.indice}/datos`).on('value',(snap) => {                
+                //si este valor nos da falso significa que /datos aun no existe
+                //asique le asignamos el valor 0, y si no cogerla la posicion
+                //qsigueinte donde ingresara la foto nueva
+                if(!snap.val()){
+                    this.setState({indiceFoto:0})
+                }else{
+                    this.setState({indiceFoto:snap.val().length})
+                    console.log(this.state.indiceFoto);
+                }
+            })
+
             let botonEnvio = document.querySelector('#botonEnvio');
             //ponemos el boton disabled para que el usuario no siga tocando el boton
             botonEnvio.disabled = true;
@@ -54,18 +72,18 @@ class AticleIngresarFoto extends React.Component{
                 //sin la promesa falaria
                 storage.getDownloadURL().then(ruta => {
                     //creamos un objeto donde meteremos todos los datos
-                    var datos = 
-                    {
-                        usuario:this.state.usuario,
-                        mensaje:this.state.mensaje,
-                        foto:ruta
-                    }
-                    firebase.database().ref(`${this.state.indice}`).set(datos)
+                    const datos = 
+                        {
+                            mensaje:this.state.mensaje,
+                            foto:ruta
+                        }
+
+                    firebase.database().ref(`${this.state.indice}/datos/${this.state.indiceFoto}`).set(datos)
                     alert('Datos ingresados correctamente')
                     //cuando esten los datos subidos, abilitaremos denuevo el boton
                     botonEnvio.disabled = false;
                     //borramos los estados
-                    this.setState({mensaje:'',usuario:'',foto:''})
+                    this.setState({mensaje:'',foto:''})
                 })
             })
             .catch(error => {
@@ -85,8 +103,7 @@ class AticleIngresarFoto extends React.Component{
                 <div className='divContenedor'>
                     <div className='divContenedorBotones'>  
                         <h3>Ingrese los datos</h3>              
-                        <input className='btexto' type='text' onChange={(param) => {this.setState({usuario:param.target.value})}} value={this.state.usuario} placeholder='usuario...'></input>
-                        <br></br>
+                        
                         <input className='btexto' type='text' onChange={(param) => {this.setState({mensaje:param.target.value})}} value={this.state.mensaje} placeholder='mensaje...'></input>
                         <br></br>
                         <input type='file' onChange={(param) => {this.setState({foto:param.target.files[0]})}}></input>
