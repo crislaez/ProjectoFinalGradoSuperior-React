@@ -30,7 +30,7 @@ class ComponenteComentarios extends React.Component{
     
         if(this._isMounted){
             if(snap.val()){
-                console.log(snap.val())
+                // console.log(snap.val())
              this.setState({arrayPrincipar:snap.val()});           
             } 
         }                    
@@ -43,15 +43,13 @@ class ComponenteComentarios extends React.Component{
     }
 
     handleClickComentarios = () => {
-        console.log(this.state.arrayPrincipar)
+        // console.log(this.state.arrayPrincipar)
         if(!this.state.usuario){
             alert('Tienes que estar logueado')
         }else if(!this.state.comentario){
             alert('Rellene el comentario')
-        }else{
-            
-            let aux = this.state.indice;     
-               
+        }else{            
+            let aux = this.state.indice;                    
             let longitud;
 
             if(this.state.arrayPrincipar){
@@ -106,7 +104,7 @@ class ComponenteComentarios extends React.Component{
                 <div className='divCajaFormulario'>
                     <input className='btextoDos' type='text' value={this.state.comentario} onChange={(param) => {this.setState({comentario:param.target.value})}}  placeholder='comentario...'></input>
                     <br></br>
-                    <input className='botonEnviarDos' type='button' value='Enviar' onClick={this.handleClickComentarios}></input>
+                    <input className='botonEnviarDos' type='button' value='Comentar' onClick={this.handleClickComentarios}></input>
                 </div>
             </div>
         )

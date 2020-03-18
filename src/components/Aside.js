@@ -38,14 +38,27 @@ class Aside extends React.Component{
         if(!this.state.usuario || !/^[A-Za-z]+$/.test(this.state.usuario)){
             alert('ingrese el usuario correctamente')
         }else{
-            console.log(this.state.usuario);
             let arrAux = [];
+            
             for(let valor in this.state.array){
                 if (this.state.array[valor].usuario == this.state.usuario){
                    //si coincide el nombre que emos metido en el texto
                    //con el recorrido del array que tenga ese mismo nombre
                    //en el usuario, se añade al array auxiliar
-                    arrAux.push(this.state.array[valor]);
+
+                   //aqui recorremos el array datos donde estan las fotos, que estan dentro del array principal
+                   this.state.array[valor].datos.map((dato,key) => {
+                    //    console.log(this.state.array[valor].usuario)
+                    //    console.log(dato.foto)
+                    //     console.log(dato.mensaje)
+                        let usuario = 
+                            {
+                                usuario:this.state.array[valor].usuario,
+                                foto:dato.foto,
+                                mensaje:dato.mensaje
+                            }
+                        arrAux.push(usuario);
+                   })    
                 }
             }
             this.setState({arrayUsuario:arrAux})            
@@ -72,7 +85,7 @@ class Aside extends React.Component{
                         ?
                         this.state.arrayUsuario.map((data, key) => {
                             return(
-                                <div className='divCajitaBuscado' key={key}>
+                                <div className='divCajitaBuscador' key={key}>
                                     <div className='divBuscadorFoto'>
                                         <img src={data.foto}></img>
                                     </div>

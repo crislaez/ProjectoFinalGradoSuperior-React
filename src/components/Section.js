@@ -3,7 +3,7 @@ import React from 'react'
 import ArticleInicio from './ArticleInicio'
 import Aside from './Aside'
 import AticleIngresarFoto from './AticleIngresarFoto'
-// import ArticlePerfiles from './ArticlePerfiles'
+import ArticlePerfiles from './ArticlePerfiles'
 import ArticleLoguear from './ArticleLoguear'
 //CSS
 import '../css/Section.css'
@@ -29,24 +29,15 @@ class Section extends React.Component{
             this.setState({dato:'SUBIR FOTO'})
         }else if(event.target.id == 'bLogin'){
             this.setState({dato:'LOGIN'})
+        }else if(event.target.id == 'bPerfil'){
+            this.setState({dato:'PERFIL'})
         }
         // console.log(this.state.dato)
     }
 
     componentDidMount(){
         this._isMounter = true;
-
         console.log(localStorage.getItem('usuario'))
-    //    const intervalo = setInterval(() => {
-    //         let usuarioLocal = localStorage.getItem('usuario')
-    //         if(usuarioLocal){
-    //             this.setState({dato:'INICIO'})
-    //             // console.log(this.state.dato)
-    //             clearInterval(intervalo);
-    //         }else{
-    //             // console.log('no esta logeado')
-    //         }
-    //     },1000)
     }
 
     componentWillUnmount(){
@@ -55,16 +46,16 @@ class Section extends React.Component{
 
     redireccionInicio = () => {
         this.setState({dato:'INICIO'})
-        console.log('Hola')
     }
     
     render(){
         return(
             <section>
                 <nav>
-                    <input style={{marginLeft:'25%'}} id='bInicio' type='button' onClick={this.handleClick} value='INICIO'></input>
+                    <input style={{marginLeft:'19%'}} id='bInicio' type='button' onClick={this.handleClick} value='INICIO'></input>
                     <input id='bSubirFoto' type='button' onClick={this.handleClick} value='SUBIR FOTOS'></input>
                     <input id='bLogin' type='button' onClick={this.handleClick} value='LOGIN'></input>
+                    <input id='bPerfil' type='button' onClick={this.handleClick} value='PERFIL' ></input>
                 </nav>
                 {this.state.dato == 'INICIO'
                 ?
@@ -77,6 +68,10 @@ class Section extends React.Component{
                 this.state.dato == 'LOGIN'
                 ?
                 <ArticleLoguear titulo={this.state.dato} eventoEstado = {this.redireccionInicio}></ArticleLoguear>
+                :
+                this.state.dato == 'PERFIL'
+                ?
+                <ArticlePerfiles titulo={this.state.dato}></ArticlePerfiles>
                 :
                 <div></div>
                 }

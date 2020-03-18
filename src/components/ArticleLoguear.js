@@ -32,6 +32,7 @@ class ArticleLoguear extends React.Component{
             localStorage.removeItem('primarykey');
             localStorage.removeItem('usuario');
             this.setState({estadoBoton:true})
+            this.setState({load:true})
         }
     }
 

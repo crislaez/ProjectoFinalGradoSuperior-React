@@ -46,13 +46,8 @@ class ArticleInicio extends React.Component{
         let p1 = event.target.dataset.posicion1
         let p2 = event.target.dataset.posicion2
         let cfoto = event.target.dataset.foto
-        let cmensaje = event.target.dataset.mensaje
-        let cusuario = event.target.dataset.usuario;
-        // console.log('posicion 1 '+p1)
-        // console.log('posicion 2 '+p2)
-        // console.log(cfoto)
-        // console.log(cmensaje)
-        // console.log(cusuario)
+        // let cmensaje = event.target.dataset.mensaje
+        // let cusuario = event.target.dataset.usuario;
         this.setState({foto:cfoto, load:true, indice1:p1, indice2:p2})        
     }
 

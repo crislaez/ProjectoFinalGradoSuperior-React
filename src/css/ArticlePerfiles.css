@@ -1,6 +1,71 @@
 .divArticlePerfiles{
     width: 75%;
-    height: 1000px;
-    background: white;
+    height: 800px;
     float: left;
+    /* background: red; */
+}
+.divTitulo{
+    width: 98%;
+    margin-left: 1%;
+    height: 50px;
+    background: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    float: left;
+}
+.divTitulo h2{
+    text-align: center;
+    margin: 0.5em;
+ }
+ .divContenedor{
+     width: 90%;
+     margin-left: 5%;
+     height: 730px;  
+     margin-top: 1em;     
+     float: left;
+ }
+ .divContenedor:hover{
+    width: 91.7%;
+    overflow-y: scroll;
+ }
+ .divCajitaBuscado{
+    width: 28%;
+    margin-left: 2%;
+    height: 300px;
+    border-radius: 5px;
+    transition: all 300ms;
+    background-color: white;
+    box-shadow: 3px 3px 3px black;
+    margin-top: 0.5em;
+    float: left;
+ }
+ .divBuscadorFoto{
+    width: 90%;
+    height: 170px;
+    margin-left: 5%;
+    margin-top: 10px;
+ }
+ .divBuscadorFoto img{
+    width: 100%;
+    height: 170px;
+}
+ .divBuscadorDatos{
+    width: 90%;
+    height: 90px;
+    margin-left: 5%;
+    margin-top: 10px;
+ }
+ .botonBorrar{
+   width: 30%;
+   height: 30px;
+   cursor: pointer;
+   border-radius: 5px;
+   margin-left: 35%; 
+   margin-top: 1em;
+   background: #579EEB;
+   color: white;
+   transition: all 300ms;
+ }
+ .botonBorrar:hover{
+   background: #ADD1EE;
 }
