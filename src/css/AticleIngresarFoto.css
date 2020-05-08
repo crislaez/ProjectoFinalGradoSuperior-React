@@ -1,6 +1,7 @@
 .articleIngresar{
-    width: 75%;
+    width: 100%;
     height: 800px;
+    transition: all 300ms;
     float: left;
 }
 .divTitulo{

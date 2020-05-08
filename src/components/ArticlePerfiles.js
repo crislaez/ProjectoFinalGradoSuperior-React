@@ -74,7 +74,7 @@ class ArticlePerfiles extends React.Component{
         })
 
         return(
-            <article className='divArticlePerfiles'>
+            <article className='divArticlePerfiles' style={{width:this.props.cambiarTamanoVentanas}}>
                 <div className='divTitulo'>
                     <h2>{this.props.titulo}</h2>
                 </div>
@@ -87,7 +87,7 @@ class ArticlePerfiles extends React.Component{
                             return(
                                 <div className='divCajitaBuscado' key={key}>
                                     <div className='divBuscadorFoto'>
-                                        <img src={dato.foto}></img>
+                                        <img src={dato.foto} alt={dato.foto}></img>
                                     </div>
                                     <div className='divBuscadorDatos'>
                                         <p style={{textAlign:'center', color:'#245281'}}>{dato.usuario}</p>

@@ -95,7 +95,7 @@ class Aside extends React.Component{
         // <ComponenteComentarios imagen={this.state.foto} indice1={this.state.indice1} indice2={this.state.indice2}></ComponenteComentarios>
 
         return(
-            <aside className='divAside'>
+            <aside className='divAside' style={{width:this.props.aparecerMenu,height:this.props.heightMenu}}>
 
                 <div className='divTituloAside'>    
                     <h2>Buscador</h2>

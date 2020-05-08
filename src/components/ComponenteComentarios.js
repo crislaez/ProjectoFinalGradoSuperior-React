@@ -97,7 +97,7 @@ class ComponenteComentarios extends React.Component{
             <div className='divCajaFoto'>
 
                 <div className='divContenedorFoto'>
-                    <img src={this.props.imagen}></img>
+                    <img src={this.props.imagen} alt={this.props.imagen}></img>
                 </div>
                 
                 <div className='Comentarios'>

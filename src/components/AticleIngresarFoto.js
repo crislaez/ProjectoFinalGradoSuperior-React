@@ -98,7 +98,7 @@ class AticleIngresarFoto extends React.Component{
 
     render(){
         return(
-            <article className='articleIngresar'>
+            <article className='articleIngresar' style={{width:this.props.cambiarTamanoVentanas}} >
                 <div className='divTitulo'>
                     <h2>{this.props.titulo}</h2>
                 </div>

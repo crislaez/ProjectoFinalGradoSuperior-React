@@ -96,7 +96,7 @@ class ArticleInicio extends React.Component{
         })
 
         return(
-            <article className='articleInicio'>
+            <article className='articleInicio' style={{width:this.props.cambiarTamanoVentanas} }>
                 <div className='divTitulo'>
                     <h2>{this.props.titulo}</h2>
                 </div>

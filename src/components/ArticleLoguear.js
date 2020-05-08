@@ -58,7 +58,7 @@ class ArticleLoguear extends React.Component{
 
     render(){
         return(
-            <article className='divArticleLoguear'>
+            <article className='divArticleLoguear' style={{width:this.props.cambiarTamanoVentanas}}>
                 <div className='divTitulos'>
                     <h2>{this.props.titulo}</h2>
                 </div>
