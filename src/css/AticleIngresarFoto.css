@@ -44,20 +44,24 @@
     margin-left: 15%;
     height: 30px;
     border-radius: 5px;
-    margin-top: 1em;
+    border: 1px solid gray;
+    margin-top: 3em;
 }
 input[type="file"]{
-    margin-left: 15%;
-    margin-top: 1em;
-}
-.botonEnviar{
     width: 70%;
     margin-left: 15%;
-    height: 40px;
+    margin-top: 3em;    
+    height: 30px;
+}
+.botonEnviar{
+    width: 50%;
+    margin-left: 25%;
+    height: 50px;
     border-radius: 5px;
     background: #579EEB;
     color: white;
-    margin-top: 1em;
+    margin-top: 4em;
+    border: none;
     cursor: pointer;
     transition: all 300ms;
 }

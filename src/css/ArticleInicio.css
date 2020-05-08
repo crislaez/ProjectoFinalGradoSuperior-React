@@ -44,7 +44,7 @@
 }
 .divImangenes{
     width: 90%;
-    height: 150px;
+    height: 200px;
     margin-left: 5%;
     margin-top: 10px;
     background: white;
@@ -53,13 +53,13 @@
 }
 .divImangenes img{    
     width: 100%;
-    height: 101%;
+    height: 200px;
 }
 .divParrafo{
     width: 94%;
     margin-left: 3%;
     height: 120px;
-    /* overflow-y: scroll; */
+    text-align: center;
     float: left;
 }
 .parrafos{

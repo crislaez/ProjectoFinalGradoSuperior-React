@@ -23,9 +23,7 @@ class Aside extends React.Component{
         this._isMounted = true;
         if(this._isMounted){
             firebase.database().ref().on('value',(snap) => {
-                // console.log(snap.val());
                 this.setState({array:snap.val()})
-                // console.log(this.state.array);
             })
         }        
     }
@@ -39,34 +37,63 @@ class Aside extends React.Component{
             alert('ingrese el usuario correctamente')
         }else{
             let arrAux = [];
-            
-            for(let valor in this.state.array){
-                if (this.state.array[valor].usuario == this.state.usuario){
-                   //si coincide el nombre que emos metido en el texto
-                   //con el recorrido del array que tenga ese mismo nombre
-                   //en el usuario, se añade al array auxiliar
+            let aux = false;
 
-                   //aqui recorremos el array datos donde estan las fotos, que estan dentro del array principal
-                   this.state.array[valor].datos.map((dato,key) => {
-                    //    console.log(this.state.array[valor].usuario)
-                    //    console.log(dato.foto)
-                    //     console.log(dato.mensaje)
-                        let usuario = 
-                            {
-                                usuario:this.state.array[valor].usuario,
-                                foto:dato.foto,
-                                mensaje:dato.mensaje
-                            }
-                        arrAux.push(usuario);
-                   })    
-                }
+            for(let valor in this.state.array){
+
+                if (this.state.array[valor].usuario === this.state.usuario){
+
+                    if(this.state.array[valor].datos){
+
+                        this.state.array[valor].datos.map( (dato,key) => {
+                    
+                            let usuario = 
+                                {
+                                    indice1:valor,
+                                    indice2:key,
+                                    usuario:this.state.array[valor].usuario,
+                                    foto:dato.foto,
+                                    mensaje:dato.mensaje
+                                }
+
+                            arrAux.push(usuario);
+                        });                                          
+                        aux = true;
+                    }
+                }                              
             }
+
+            if(!aux){
+                alert('Usuario no encontrado');
+            }
+
             this.setState({arrayUsuario:arrAux})            
             this.setState({usuario:''});
         }
     }
 
+    handleClickComentario = (event) => {
+        // console.log(event.target.dataset.indice1)
+        // console.log(event.target.dataset.indice2)
+        // console.log(event.target.dataset.foto)
+        let usuario = 
+            {
+                indice1:event.target.dataset.indice1,
+                indice2:event.target.dataset.indice2,
+                foto:event.target.dataset.foto,
+                load:true
+            };
+
+        const funcionCargarCatosComentario = this.props.funcionCargarCatosComentario;
+        funcionCargarCatosComentario(usuario);
+        
+    }
+
     render(){
+
+        console.log(this.state.arrayUsuario);
+        // <ComponenteComentarios imagen={this.state.foto} indice1={this.state.indice1} indice2={this.state.indice2}></ComponenteComentarios>
+
         return(
             <aside className='divAside'>
 
@@ -83,15 +110,15 @@ class Aside extends React.Component{
                     {
                         this._isMounted && this.state.arrayUsuario
                         ?
-                        this.state.arrayUsuario.map((data, key) => {
+                        this.state.arrayUsuario.map((dato, key) => {
                             return(
-                                <div className='divCajitaBuscador' key={key}>
+                                <div className='divCajitaBuscador' key={key} onClick={this.handleClickComentario} data-indice1={dato.indice1} data-indice2={dato.indice2} data-foto={dato.foto}>
                                     <div className='divBuscadorFoto'>
-                                        <img src={data.foto}></img>
+                                        <img src={dato.foto} alt={dato.foto} data-indice1={dato.indice1} data-indice2={dato.indice2} data-foto={dato.foto}></img>
                                     </div>
-                                    <div className='divBuscadorDatos'>
-                                        <p style={{textAlign:'center', color:'#245281'}}>{data.usuario}</p>
-                                        <p>{data.mensaje}</p>
+                                    <div className='divBuscadorDatos' data-indice1={dato.indice1} data-indice2={dato.indice2} data-foto={dato.foto}>
+                                        <p style={{textAlign:'center', color:'#245281'}} data-indice1={dato.indice1} data-indice2={dato.indice2} data-foto={dato.foto}>{dato.usuario}</p>
+                                        <p data-indice1={dato.indice1} data-indice2={dato.indice2} data-foto={dato.foto}>{dato.mensaje}</p>
                                     </div>
                                 </div>
                             )

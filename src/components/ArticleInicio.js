@@ -41,17 +41,38 @@ class ArticleInicio extends React.Component{
         this._isMounted = false; 
     }
 
+    componentDidUpdate(prevProps){
+        if(this.props.datoUsuario !== prevProps.datoUsuario){
+            // this.setState({foto:this.props.datoUsuario.foto, load:true, indice1:this.props.datoUsuario.indice1, indice2:this.props.datoUsuario.indice2})  
+            this.setState({load:true})
+        }        
+     }
+
     handleClick = (event) => {
      
-        let p1 = event.target.dataset.posicion1
-        let p2 = event.target.dataset.posicion2
-        let cfoto = event.target.dataset.foto
-        // let cmensaje = event.target.dataset.mensaje
-        // let cusuario = event.target.dataset.usuario;
-        this.setState({foto:cfoto, load:true, indice1:p1, indice2:p2})        
+        // let p1 = event.target.dataset.posicion1
+        // let p2 = event.target.dataset.posicion2
+        // let cfoto = event.target.dataset.foto
+        let objeto = 
+            {
+                indice1: event.target.dataset.posicion1,
+                indice2: event.target.dataset.posicion2,
+                foto: event.target.dataset.foto,
+                load:true
+            }
+
+        const funcionCargarCatosComentario = this.props.funcionCargarCatosComentario;
+        funcionCargarCatosComentario(objeto)
+
+        this.setState({load:true})
+
+        // this.setState({foto:cfoto, load:true, indice1:p1, indice2:p2})     
+          
+        // this.setState({foto:this.props.datoUsuario.foto, load:true, indice1:this.props.datoUsuario.indice1, indice2:this.props.datoUsuario.indice2})  
     }
 
     handleClickAtras = () => {
+        
         this.setState({load:false})       
     }
 
@@ -88,7 +109,7 @@ class ArticleInicio extends React.Component{
                                 return(
                                     <div data-codigo={key} data-foto={dato.foto} data-mensaje={dato.mensaje} data-usuario={dato.usuario} data-posicion1={dato.posicion1} data-posicion2={dato.posicion2} key={key} className='divFotosUsuarios' onClick={this.handleClick}>
                                         <div className='divImangenes'>
-                                            <img data-codigo={key} data-foto={dato.foto} data-mensaje={dato.mensaje} data-usuario={dato.usuario} data-posicion1={dato.posicion1} data-posicion2={dato.posicion2} src={dato.foto}></img>
+                                            <img data-codigo={key} data-foto={dato.foto} data-mensaje={dato.mensaje} data-usuario={dato.usuario} data-posicion1={dato.posicion1} data-posicion2={dato.posicion2} src={dato.foto} alt={dato.foto}></img>
                                         </div>
                                         <div data-codigo={key} data-foto={dato.foto} data-mensaje={dato.mensaje} data-usuario={dato.usuario} data-posicion1={dato.posicion1} data-posicion2={dato.posicion2} className='divParrafo'>
                                             <p data-codigo={key} data-foto={dato.foto} data-mensaje={dato.mensaje} data-usuario={dato.usuario} data-posicion1={dato.posicion1} data-posicion2={dato.posicion2}  className='parrafos'>{dato.usuario}</p>
@@ -102,7 +123,7 @@ class ArticleInicio extends React.Component{
                         ?
                         <div>
                             <input className='bAtras' type='button' value='ATRAS' onClick={this.handleClickAtras}></input>                                              
-                            <ComponenteComentarios imagen={this.state.foto} indice1={this.state.indice1} indice2={this.state.indice2}></ComponenteComentarios>
+                            <ComponenteComentarios imagen={this.props.datoUsuario.foto} indice1={this.props.datoUsuario.indice1} indice2={this.props.datoUsuario.indice2}></ComponenteComentarios>
                         </div> 
                         :
                         // <div className="loader">Loading...</div> 

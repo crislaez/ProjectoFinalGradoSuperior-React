@@ -20,30 +20,41 @@ class ComponenteComentarios extends React.Component{
             
         }
     }
+
+    cargarDataBase = () => {
+
+       let datamensaje = firebase.database().ref(`${this.props.indice1}`).child(`datos/${this.props.indice2}/comentarios`);
+       datamensaje.on('value',(snap) => {    
+            if(this._isMounted){
+                if(snap.val()){
+                    // console.log(snap.val())
+                this.setState({arrayPrincipar:snap.val()});           
+                } 
+            }                    
+       })  
+    }
     
     componentDidMount(){
        this._isMounted = true;
        this.setState({indice:this.props.indice1,indice2:this.props.indice2, usuario:localStorage.getItem('usuario')})
-
-       let datamensaje = firebase.database().ref(`${this.props.indice1}`).child(`datos/${this.props.indice2}/comentarios`);
-       datamensaje.on('value',(snap) => {
-    
-        if(this._isMounted){
-            if(snap.val()){
-                // console.log(snap.val())
-             this.setState({arrayPrincipar:snap.val()});           
-            } 
-        }                    
-       })       
-       
+       //console.log(this.props.indice1);
+       //console.log(this.props.indice2)
+       this.cargarDataBase();
+                   
     }
+
+    componentDidUpdate(prevProps){     
+        if(this.props !== prevProps){
+            this.setState({indice:this.props.indice1,indice2:this.props.indice2, usuario:localStorage.getItem('usuario')})
+            this.cargarDataBase();
+         }        
+     }   
 
     componentWillMount(){
         this._isMounted = false
     }
 
     handleClickComentarios = () => {
-        // console.log(this.state.arrayPrincipar)
         if(!this.state.usuario){
             alert('Tienes que estar logueado')
         }else if(!this.state.comentario){
@@ -80,6 +91,8 @@ class ComponenteComentarios extends React.Component{
     }
 
     render(){
+
+
         return(
             <div className='divCajaFoto'>
 

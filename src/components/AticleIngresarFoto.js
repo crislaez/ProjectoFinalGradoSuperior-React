@@ -85,6 +85,9 @@ class AticleIngresarFoto extends React.Component{
                     //borramos los estados
                     this.setState({mensaje:'',foto:''})
                 })
+                //llamamos a la funcion que esta en el section para que cuando subamos una foto, nos redirecciona al componente inicio
+                const redireccionInicio = this.props.redireccionInicio;
+                redireccionInicio();
             })
             .catch(error => {
                 alert(error.message)

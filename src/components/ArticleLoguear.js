@@ -28,11 +28,15 @@ class ArticleLoguear extends React.Component{
             this.setState({load:false})
         }
         else if(event.target.id == 'bCerrarSesion'){
-            alert('Has cerrado sesion')
-            localStorage.removeItem('primarykey');
-            localStorage.removeItem('usuario');
-            this.setState({estadoBoton:true})
-            this.setState({load:true})
+            let confirmacion = window.confirm('Estas seguro de cerrar sesion?');
+
+            if(confirmacion){
+                alert('Has cerrado sesion')
+                localStorage.removeItem('primarykey');
+                localStorage.removeItem('usuario');
+                this.setState({estadoBoton:true})
+                this.setState({load:true})
+            }            
         }
     }
 
