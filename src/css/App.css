@@ -3,3 +3,152 @@
     padding: 0px;
     font-family: sans-serif;
 }
+@media screen and (max-width: 1060px){
+    .primerEnlace{
+        margin-left:20%;
+    }
+    footer a{
+        font-size: 15px;
+    }
+    
+}
+
+@media screen and (max-width: 768px){
+
+    .primerEnlace{
+        margin-left:10%;
+    }
+
+    footer a{
+        font-size: 15px;
+    }
+    /* aside */
+    .divTituloAside h2{
+        font-size: 17px;
+    }
+
+    .bTextoBuscador{
+        font-size: 10px;
+    }
+
+    .bBuscador{
+        font-size: 10px;
+    }
+    /* section */
+    nav input{
+        font-size: 10px;
+    }
+    /* articleInicio */
+    .divFotosUsuarios{
+        height: 300px;
+    }
+
+    .divImangenes{
+        height: 150px;
+        margin-bottom: 10px;
+    }
+
+    .divImangenes img{
+        height: 150px;
+    }
+
+    .divParrafo{        
+        height: 50px;
+    }
+    
+    .divParrafo p{
+        font-size: 12px;
+    }
+    /* perfil */
+    .divCajitaBuscado{
+        height: 250px;
+    }
+
+    .divBuscadorFoto{
+        height: 100px;
+    }
+
+    .divBuscadorFoto img{
+        height: 100px;
+    }
+
+    .divBuscadorDatos{
+        height: 120px;
+    }
+
+    .divBuscadorDatos p{
+        font-size: 15px;
+        margin-top: 10px;
+    }
+    .botonBorrar{
+        font-size: 10px;
+    }
+    
+}
+
+@media screen and (max-width: 560px){
+    .primerEnlace{
+        margin-left:10%;
+    }
+    footer a{
+        font-size: 13px;
+    }
+    /* aside */
+    .bTextoBuscador{
+        font-size: 7px;
+    }
+
+    .bBuscador{
+        font-size: 7px;
+    }
+    /* section */
+    nav input{
+        font-size: 10px;
+    }
+    /* articleInicio */
+    .divFotosUsuarios{
+        height: 220px;
+    }
+
+    .divImangenes{
+        height: 100px;
+        margin-bottom: 10px;
+    }
+
+    .divImangenes img{
+        height: 100px;
+    }
+
+    .divParrafo{        
+        height: 20px;
+    }
+
+    .divParrafo p{
+        font-size: 12px;
+    }
+    /* perfil */
+    .divCajitaBuscado{
+        height: 250px;
+    }
+
+    .divBuscadorFoto{
+        height: 100px;
+    }
+
+    .divBuscadorFoto img{
+        height: 100px;
+    }
+
+    .divBuscadorDatos{
+        height: 120px;
+    }
+
+    .divBuscadorDatos p{
+        font-size: 10px;
+        margin-top: 15px;
+    }
+
+    .botonBorrar{
+        font-size: 7px;
+    }
+}
