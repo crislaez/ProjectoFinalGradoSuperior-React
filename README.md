@@ -9,7 +9,7 @@ THE TRAVELLER es una red social de viajes
 ### Que hace el proyecto
 
 THE TRAVELLER es una red social de viajes donde los usuarios pueden subir sus fotos de viajes
-y poder contar experiencias de los mismos, otros usuarios tambien pueden comentar y dar su feedback (back-end echo con firebase)
+y poder contar experiencias de los mismos, otros usuarios tambien pueden comentar y dar su feedback (back-end hecho con firebase)
  
 ### Donde pueden recibir ayuda los usuarios con el proyecto
  
