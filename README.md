@@ -2,9 +2,9 @@
 
 THE TRAVELLER es una red social de viajes
 
-<img src="https://github.com/crislaez/ProjectoFinalGradoSuperior-React/blob/master/src/img/foto_proyecto.PNG" />
+<img src="https://github.com/crislaez/ProjectoFinalGradoSuperior-React/blob/master/src/imagenes/foto_proyecto.PNG" />
 <hr>
-<img src="https://github.com/crislaez/ProjectoFinalGradoSuperior-React/blob/master/src/img/foto_proyecto_2.PNG" />
+<img src="https://github.com/crislaez/ProjectoFinalGradoSuperior-React/blob/master/src/imagenes/foto_proyecto_2.PNG" />
 
 ### Que hace el proyecto
 
